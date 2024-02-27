@@ -35,9 +35,10 @@ def get_sorted_operation_list(operations_not_sort):
     return operations_sort
 
 
-def get_last_operations(operations, n):
+def get_last_operations(operations, n=5):
     """Возвращает список последних n выполненных операций"""
-
+    if n > len(operations):
+        n = len(operations)
     last_operations = []
     i = 0
     while len(last_operations) < n:
@@ -70,7 +71,7 @@ def get_operation_for_read(operation):
     else:
         to_ = " ".join(operation["to"].split(" ")[: -1])
         card_number = operation["to"].split(" ")[-1]
-        to_ = f"{from_} {card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]} "
+        to_ = f"{to_} {card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]} "
 
     return f"""{date} {operation["description"]}
 {from_}-> {to_}
